@@ -43,6 +43,8 @@ class TVShowDetailsViewController: UIViewController {
         view.addSubview(tableView)
         tableView.frame = view.bounds
         
+        view.backgroundColor = .systemBackground
+        
         tableView.delegate = self
         tableView.dataSource = self
     }

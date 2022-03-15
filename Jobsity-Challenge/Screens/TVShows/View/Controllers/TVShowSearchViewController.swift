@@ -60,6 +60,7 @@ class TVShowSearchViewController: UIViewController {
     
     private func setupLayout() {
         navigationItem.titleView = searchBar
+        view.backgroundColor = .systemBackground
         
         //setupTableView
         view.addSubview(tableView)

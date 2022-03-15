@@ -47,6 +47,7 @@ class TVShowListViewController: UIViewController {
         self.title = "TV Shows"
         self.navigationController?.navigationBar.prefersLargeTitles = true
         
+        view.backgroundColor = .systemBackground
         navigationItem.rightBarButtonItem = searchItem
         
         view.addSubview(tableView)

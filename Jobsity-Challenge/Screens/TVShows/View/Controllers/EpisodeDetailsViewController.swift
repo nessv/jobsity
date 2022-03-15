@@ -44,7 +44,7 @@ class EpisodeDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
+        
         setupLayout()
         setupInfo()
     }
@@ -74,8 +74,11 @@ class EpisodeDetailsViewController: UIViewController {
     
     
     private func setupLayout() {
+        view.backgroundColor = .systemBackground
+        
         scrollView = UIScrollView()
         view.addSubview(scrollView)
+        
         scrollView.frame = view.bounds
         scrollView?.alwaysBounceHorizontal = false
         
@@ -85,26 +88,22 @@ class EpisodeDetailsViewController: UIViewController {
         verticalStackView.axis = .vertical
         verticalStackView.alignment = .top
         
-        let contentView = UIView()
-        contentView.frame = scrollView.bounds
-        
-        scrollView.addSubview(contentView)
-        
         [episodeImage, verticalStackView].forEach {
-            contentView.addSubview($0)
+            scrollView.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
         
         NSLayoutConstraint.activate([
-            episodeImage.topAnchor.constraint(equalTo: contentView.topAnchor),
-            episodeImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            episodeImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            episodeImage.heightAnchor.constraint(equalToConstant: contentView.frame.size.height * 0.4),
+            episodeImage.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            episodeImage.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            episodeImage.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            episodeImage.heightAnchor.constraint(equalToConstant: scrollView.frame.size.height * 0.4),
+            episodeImage.widthAnchor.constraint(equalToConstant: view.frame.size.width),
             
             verticalStackView.topAnchor.constraint(equalTo: episodeImage.bottomAnchor, constant: 16),
             verticalStackView.leadingAnchor.constraint(equalTo: episodeImage.leadingAnchor, constant: 16),
             verticalStackView.trailingAnchor.constraint(equalTo: episodeImage.trailingAnchor, constant: -16),
-            verticalStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16)
+            verticalStackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -16)
         ])
     }
     
